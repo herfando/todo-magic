@@ -1,125 +1,73 @@
-/* Reset */
+/* Reset dasar */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #ece9e6, #ffffff);
-  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f9fafb;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  min-height: 100vh;
   padding: 40px;
-  color: #2d3436;
 }
 
-/* Container */
 .container {
-  background: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  width: 400px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-/* Judul */
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6c5ce7;
-  font-size: 26px;
-}
-
-/* Input + Button */
-input[type="text"] {
   width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1px solid #dfe6e9;
-  outline: none;
-  font-size: 15px;
-  margin-bottom: 18px;
-  transition: 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 6px rgba(108,92,231,0.4);
-}
-
-/* List */
-#taskList {
-  list-style: none;
-  counter-reset: task-counter;
-}
-
-#taskList li {
-  display: flex;
-  justify-content: space-between; /* kiri-kanan */
-  align-items: center;
-  background: #fafafa;
-  padding: 14px 16px;
-  margin-bottom: 12px;
+  max-width: 500px;
+  background: #fff;
+  padding: 20px 25px;
   border-radius: 12px;
-  border: 1px solid #eaeaea;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  counter-increment: task-counter;
-  position: relative;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Nomor otomatis */
-#taskList li::before {
-  content: counter(task-counter) ". ";
-  font-weight: 600;
-  color: #6c5ce7;
-  margin-right: 8px;
+h1 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
 }
 
-/* Teks kiri */
-#taskList li .task-text {
-  flex: 1;
+input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input:focus {
+  border-color: #4a90e2;
+}
+
+ul {
+  list-style: none;
+  margin-top: 20px;
+  padding-left: 0;     /* pastikan tidak ada indentasi tambahan */
+}
+
+li {
+  background: #f1f5f9;
+  margin-bottom: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+
+  /* Biar item selalu ke kiri */
   text-align: left;
-  font-weight: 500;
-  color: #2d3436;
-  display: flex;
-  align-items: center;
+  display: block;     /* jangan pakai flex supaya teks rata kiri */
+  width: 100%;
+
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.25s ease;
 }
 
-/* Harga kanan */
-#taskList li .price {
-  color: #00b894;
-  font-weight: 600;
-  font-size: 14px;
-  min-width: 80px;
-  text-align: right;
-}
-
-/* Efek hover */
-#taskList li:hover {
-  background: #f1f2f6;
-  transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-/* Selesai (coretan) */
-#taskList li.completed .task-text {
-  text-decoration: line-through;
-  color: #b2bec3;
-}
-
-/* Animasi muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+li.removing {
+  opacity: 0;
+  transform: translateX(-50px);
 }
