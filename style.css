@@ -16,7 +16,7 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  width: 460px;
+  width: 480px;
   animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -79,6 +79,7 @@ h1 {
   list-style: none;
   padding: 0;
   margin: 0;
+  counter-reset: task-counter;
 }
 
 #taskList li {
@@ -92,8 +93,19 @@ h1 {
   border: 1px solid #eaeaea;
   font-size: 15px;
   transition: all 0.3s ease;
+  counter-increment: task-counter;
+  position: relative;
 }
 
+/* Tambahin nomor otomatis */
+#taskList li::before {
+  content: counter(task-counter) ". ";
+  font-weight: 600;
+  color: #6c5ce7;
+  margin-right: 10px;
+}
+
+/* Hover effect */
 #taskList li:hover {
   background: #f7f1ff;
   transform: translateX(5px);
