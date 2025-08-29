@@ -1,15 +1,29 @@
+// Ambil input dan daftar
+const input = document.getElementById("taskInput");
+const list = document.getElementById("taskList");
+
 function addTask() {
-  const input = document.getElementById("taskInput");
-  const task = input.value.trim();
-  if (task === "") return;
+  // Ambil teks dari input
+  const taskText = input.value;
 
+  // Kalau kosong jangan dimasukin
+  if (taskText === "") {
+    alert("Tugasnya harus diisi dulu!");
+    return;
+  }
+
+  // Bikin item list baru
   const li = document.createElement("li");
-  li.textContent = task;
+  li.textContent = taskText;
 
-  li.addEventListener("click", () => {
-    li.classList.toggle("done");
-  });
+  // Kalau diklik, hapus tugas
+  li.onclick = function() {
+    li.remove();
+  };
 
-  document.getElementById("taskList").appendChild(li);
+  // Masukkan ke daftar
+  list.appendChild(li);
+
+  // Kosongkan input lagi
   input.value = "";
 }
