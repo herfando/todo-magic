@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>To Do List</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>To Do List</h1>
+  <div class="container">
+    <h1>To Do List</h1>
 
-  <!-- Tempat nulis tugas -->
-  <input type="text" id="taskInput" placeholder="Tulis tugasmu...">
-  <button onclick="addTask()">Tambah</button>
+    <!-- Bungkus input dan button biar bisa diatur spacing-nya -->
+    <div class="input-wrapper">
+      <input type="text" id="taskInput" placeholder="Tulis tugasmu..." />
+      <button id="addBtn">Tambah</button>
+    </div>
 
-  <!-- Daftar tugas akan muncul di sini -->
-  <ol id="taskList"></ol>
+    <!-- Daftar tugas -->
+    <ul id="taskList"></ul>
+  </div>
 
   <script src="script.js"></script>
 </body>
