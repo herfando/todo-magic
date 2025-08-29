@@ -1,46 +1,81 @@
-// Ambil input dan daftar
 const input = document.getElementById("taskInput");
 const list = document.getElementById("taskList");
 
 function addTask() {
-  // Ambil teks dari input
   const taskText = input.value.trim();
-
-  // Kalau kosong jangan dimasukin
   if (taskText === "") {
     alert("Tugasnya harus diisi dulu!");
     return;
   }
 
-  // Bikin item list baru
   const li = document.createElement("li");
+  li.setAttribute("tabindex", "0");
 
-  // Bikin span buat teks biar terpisah dari tombol delete
   const span = document.createElement("span");
   span.textContent = taskText;
+  span.style.cursor = "pointer";
 
-  // Bikin tombol delete
+  // Klik teks untuk pilih
+  span.addEventListener("click", (e) => {
+    e.stopPropagation();
+    list.querySelectorAll(".selected").forEach(el => el.classList.remove("selected"));
+    li.classList.add("selected");
+    li.focus();
+  });
+
+  // Tombol delete di samping teks
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
-  deleteBtn.style.marginLeft = "10px";
-  deleteBtn.onclick = function () {
+  deleteBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     li.remove();
-  };
+  });
 
-  // Masukkan teks dan tombol ke dalam li
+  // Tekan Delete/Backspace saat fokus di li -> hapus
+  li.addEventListener("keydown", (e) => {
+    if (e.key === "Delete" || e.key === "Backspace") {
+      e.preventDefault();
+      li.remove();
+    }
+  });
+
   li.appendChild(span);
   li.appendChild(deleteBtn);
-
-  // Masukkan ke daftar
   list.appendChild(li);
 
-  // Kosongkan input lagi
   input.value = "";
+  input.focus();
 }
 
-// Tekan Enter = tambah task
-input.addEventListener("keypress", function (event) {
+// Tekan Enter di input -> tambah task
+input.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     addTask();
   }
+});
+
+// Klik di luar list -> hilangkan tanda selected
+document.addEventListener("click", (e) => {
+  if (!list.contains(e.target)) {
+    list.querySelectorAll(".selected").forEach(el => el.classList.remove("selected"));
+  }
+});
+
+// Tekan Delete/Backspace -> hapus item yang selected atau fokus
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Delete" && event.key !== "Backspace") return;
+
+  const active = document.activeElement;
+
+  if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) {
+    return; // Jangan hapus kalau sedang ngetik
+  }
+
+  if (active && active.tagName === "LI" && active.parentElement === list) {
+    active.remove();
+    return;
+  }
+
+  const selected = list.querySelector(".selected");
+  if (selected) selected.remove();
 });
