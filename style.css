@@ -1,4 +1,4 @@
-/* ====== Reset & Global ====== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,107 +6,98 @@
 }
 
 body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: linear-gradient(135deg, #eef2f3, #d9e4ec);
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f6fa;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px;
+  color: #333;
 }
 
-/* ====== Container ====== */
+/* Container */
 .container {
   background: #fff;
-  padding: 35px 30px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  padding: 28px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 420px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.container:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
-}
-
-/* ====== Title ====== */
+/* Title */
 h1 {
   text-align: center;
-  color: #222;
-  margin-bottom: 28px;
-  font-size: 28px;
+  font-size: 22px;
+  margin-bottom: 25px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  color: #2c3e50;
 }
 
-/* ====== Input & Button ====== */
+/* Input area */
 .input-wrapper {
   display: flex;
-  gap: 10px;
-  margin-bottom: 22px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 #taskInput {
   flex: 1;
-  padding: 12px 14px;
-  border: 2px solid #d1d9de;
-  border-radius: 10px;
-  outline: none;
+  padding: 10px 14px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
   font-size: 14px;
-  transition: all 0.25s ease;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 #taskInput:focus {
   border-color: #3498db;
-  box-shadow: 0 0 12px rgba(52, 152, 219, 0.35);
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+  outline: none;
 }
 
 #addBtn {
-  background: linear-gradient(135deg, #3498db, #217dbb);
-  color: #fff;
+  padding: 10px 16px;
   border: none;
-  border-radius: 10px;
-  padding: 12px 18px;
+  border-radius: 8px;
+  background: #3498db;
+  color: #fff;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.3px;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 #addBtn:hover {
-  background: linear-gradient(135deg, #2980b9, #1f6694);
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background: #2980b9;
 }
 
 #addBtn:active {
   transform: scale(0.97);
 }
 
-/* ====== Task List ====== */
+/* Task List */
 #taskList {
-  margin-top: 15px;
-  padding: 0;
   list-style: none;
+  margin-top: 10px;
 }
 
 #taskList li {
-  background: #f9fbfc;
-  padding: 14px 16px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-  font-size: 15px;
-  cursor: pointer;
-  position: relative;
-  border: 1px solid #e3e9ed;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 #taskList li:hover {
-  background: #eef6fb;
-  transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #f0f7ff;
+}
+
+#taskList li.completed {
+  text-decoration: line-through;
+  color: #7f8c8d;
+  background: #ecf0f1;
 }
