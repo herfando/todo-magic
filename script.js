@@ -14,12 +14,22 @@ function addTask() {
 
   // Bikin item list baru
   const li = document.createElement("li");
-  li.textContent = taskText;
 
-  // Kalau diklik, hapus tugas
-  li.onclick = function() {
+  // Bikin span buat teks biar terpisah dari tombol delete
+  const span = document.createElement("span");
+  span.textContent = taskText;
+
+  // Bikin tombol delete
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.style.marginLeft = "10px";
+  deleteBtn.onclick = function () {
     li.remove();
   };
+
+  // Masukkan teks dan tombol ke dalam li
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
 
   // Masukkan ke daftar
   list.appendChild(li);
@@ -28,8 +38,8 @@ function addTask() {
   input.value = "";
 }
 
-// ➝ Tambahkan event listener untuk tombol Enter
-input.addEventListener("keypress", function(event) {
+// Tekan Enter = tambah task
+input.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     addTask();
   }
