@@ -1,8 +1,10 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
+  background-color: aqua;
 }
 li.done {
   text-decoration: line-through;
   color: gray;
+
 }
