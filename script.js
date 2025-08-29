@@ -4,7 +4,7 @@ const list = document.getElementById("taskList");
 
 function addTask() {
   // Ambil teks dari input
-  const taskText = input.value;
+  const taskText = input.value.trim();
 
   // Kalau kosong jangan dimasukin
   if (taskText === "") {
@@ -27,3 +27,10 @@ function addTask() {
   // Kosongkan input lagi
   input.value = "";
 }
+
+// ➝ Tambahkan event listener untuk tombol Enter
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    addTask();
+  }
+});
