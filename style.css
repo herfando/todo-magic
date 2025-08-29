@@ -80,16 +80,29 @@ h1 {
 #taskList {
   list-style: none;
   margin-top: 10px;
+  counter-reset: task-counter; /* mulai counter dari 0 */
 }
 
 #taskList li {
-  padding: 12px 14px;
+  counter-increment: task-counter; /* tiap li nambah angka */
+  padding: 12px 14px 12px 40px; /* kasih ruang buat nomor */
   margin-bottom: 10px;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
   background: #fafafa;
   font-size: 14px;
+  position: relative;
   transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#taskList li::before {
+  content: counter(task-counter) ".";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  color: #3498db;
 }
 
 #taskList li:hover {
