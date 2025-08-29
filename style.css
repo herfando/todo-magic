@@ -1,90 +1,65 @@
-/* ====== Global ====== */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, #ece9e6, #ffffff);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
-  margin: 0;
-  padding: 50px 20px;
+  padding: 40px;
   color: #2d3436;
 }
 
+/* Container */
 .container {
-  background: #ffffff;
+  background: #fff;
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  width: 480px;
-  animation: fadeIn 0.8s ease-in-out;
+  width: 400px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* Judul */
 h1 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  color: #6c5ce7;
   font-size: 26px;
-  font-weight: 600;
-  color: #34495e;
-  letter-spacing: 1px;
 }
 
-/* ====== Input Section ====== */
-.input-section {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 25px;
-}
-
-#taskInput {
-  flex: 1;
-  padding: 14px 16px;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  font-size: 15px;
-  transition: all 0.3s ease;
-}
-
-#taskInput:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 8px rgba(108, 92, 231, 0.2);
+/* Input + Button */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #dfe6e9;
   outline: none;
-}
-
-#addBtn {
-  padding: 14px 22px;
-  border: none;
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  color: #fff;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
   font-size: 15px;
+  margin-bottom: 18px;
+  transition: 0.3s;
 }
 
-#addBtn:hover {
-  background: linear-gradient(135deg, #5a4ae3, #8d84f7);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(108, 92, 231, 0.3);
+input[type="text"]:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 6px rgba(108,92,231,0.4);
 }
 
-/* ====== Task List ====== */
+/* List */
 #taskList {
   list-style: none;
-  padding: 0;
-  margin: 0;
   counter-reset: task-counter;
 }
 
 #taskList li {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* kiri-kanan */
   align-items: center;
   background: #fafafa;
   padding: 14px 16px;
@@ -97,28 +72,25 @@ h1 {
   position: relative;
 }
 
-/* Tambahin nomor otomatis */
+/* Nomor otomatis */
 #taskList li::before {
   content: counter(task-counter) ". ";
   font-weight: 600;
   color: #6c5ce7;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
-/* Hover effect */
-#taskList li:hover {
-  background: #f7f1ff;
-  transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.15);
-}
-
-/* Task Text */
-#taskList li span:first-child {
-  color: #2d3436;
+/* Teks kiri */
+#taskList li .task-text {
+  flex: 1;
+  text-align: left;
   font-weight: 500;
+  color: #2d3436;
+  display: flex;
+  align-items: center;
 }
 
-/* Harga */
+/* Harga kanan */
 #taskList li .price {
   color: #00b894;
   font-weight: 600;
@@ -127,9 +99,27 @@ h1 {
   text-align: right;
 }
 
-/* Completed */
-#taskList li.completed span:first-child {
+/* Efek hover */
+#taskList li:hover {
+  background: #f1f2f6;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Selesai (coretan) */
+#taskList li.completed .task-text {
   text-decoration: line-through;
   color: #b2bec3;
-  font-style: italic;
+}
+
+/* Animasi muncul */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
