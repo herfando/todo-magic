@@ -6,8 +6,27 @@ function addTask() {
   const taskText = input.value.trim();
   if (taskText === "") return;
 
+  // Pisahkan nama & harga pakai tanda "-"
+  let [name, price] = taskText.split("-");
+  name = name ? name.trim() : "";
+  price = price ? price.trim() : "";
+
   const li = document.createElement("li");
-  li.textContent = taskText;
+
+  // Tambahkan teks tugas
+  const taskSpan = document.createElement("span");
+  taskSpan.textContent = name;
+
+  // Tambahkan harga (jika ada)
+  if (price) {
+    const priceSpan = document.createElement("span");
+    priceSpan.textContent = "Rp" + Number(price).toLocaleString("id-ID");
+    priceSpan.classList.add("price");
+    li.appendChild(taskSpan);
+    li.appendChild(priceSpan);
+  } else {
+    li.appendChild(taskSpan);
+  }
 
   // Klik task -> toggle selesai
   li.addEventListener("click", () => {
@@ -24,13 +43,11 @@ addBtn.addEventListener("click", addTask);
 // Event keyboard di input
 input.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    // Enter -> tambah task
     addTask();
   } else if (
     (event.key === "Backspace" || event.key === "Delete") &&
     input.value === ""
   ) {
-    // Backspace/Delete saat input kosong -> hapus task terakhir
     const lastTask = list.lastElementChild;
     if (lastTask) {
       lastTask.remove();
