@@ -1,65 +1,82 @@
+/* ====== Global ====== */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f6f9;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 40px;
+  margin: 0;
+  padding: 50px 20px;
+  color: #2d3436;
 }
 
 .container {
-  background: #fff;
+  background: #ffffff;
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
-  width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  width: 460px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #34495e;
+  letter-spacing: 1px;
 }
 
+/* ====== Input Section ====== */
 .input-section {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 #taskInput {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border 0.3s ease;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
 }
 
 #taskInput:focus {
-  border-color: #3498db;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 8px rgba(108, 92, 231, 0.2);
   outline: none;
 }
 
 #addBtn {
-  padding: 12px 20px;
+  padding: 14px 22px;
   border: none;
-  background: #3498db;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease;
-  font-weight: bold;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 15px;
 }
 
 #addBtn:hover {
-  background: #2980b9;
+  background: linear-gradient(135deg, #5a4ae3, #8d84f7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(108, 92, 231, 0.3);
 }
 
-/* Task List */
+/* ====== Task List ====== */
 #taskList {
-  list-style: decimal inside;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -68,36 +85,39 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-  border-radius: 8px;
   background: #fafafa;
-  border: 1px solid #e6e6e6;
-  transition: transform 0.2s ease, background 0.3s ease;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  font-size: 15px;
+  transition: all 0.3s ease;
 }
 
 #taskList li:hover {
+  background: #f7f1ff;
   transform: translateX(5px);
-  background: #f0f8ff;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.15);
 }
 
 /* Task Text */
 #taskList li span:first-child {
-  font-size: 16px;
-  color: #2c3e50;
+  color: #2d3436;
+  font-weight: 500;
 }
 
 /* Harga */
 #taskList li .price {
-  color: #27ae60;
-  font-weight: bold;
-  font-size: 15px;
+  color: #00b894;
+  font-weight: 600;
+  font-size: 14px;
   min-width: 80px;
   text-align: right;
 }
 
-/* Completed State */
+/* Completed */
 #taskList li.completed span:first-child {
   text-decoration: line-through;
-  color: #7f8c8d;
+  color: #b2bec3;
+  font-style: italic;
 }
