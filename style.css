@@ -5,6 +5,9 @@ body {
 }
 li.done {
   text-decoration: line-through;
-  color: gray;
+  color: red;
+  text-align: center;
+  
+
 
 }
