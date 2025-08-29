@@ -1,138 +1,103 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f5f6fa;
-  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  min-height: 100vh;
   padding: 40px;
-  color: #333;
 }
 
-/* Container */
 .container {
   background: #fff;
-  padding: 28px 25px;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 420px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+  width: 420px;
 }
 
-/* Title */
 h1 {
   text-align: center;
-  font-size: 22px;
-  margin-bottom: 25px;
-  font-weight: 600;
+  margin-bottom: 20px;
   color: #2c3e50;
 }
 
-/* Input area */
-.input-wrapper {
+.input-section {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 #taskInput {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #dcdde1;
+  padding: 12px;
+  border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  font-size: 16px;
+  transition: border 0.3s ease;
 }
 
 #taskInput:focus {
   border-color: #3498db;
-  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
   outline: none;
 }
 
 #addBtn {
-  padding: 10px 16px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 8px;
   background: #3498db;
   color: #fff;
-  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background 0.3s ease;
+  font-weight: bold;
 }
 
 #addBtn:hover {
   background: #2980b9;
 }
 
-#addBtn:active {
-  transform: scale(0.97);
-}
-
 /* Task List */
 #taskList {
-  list-style: none;
-  margin-top: 10px;
-  counter-reset: task-counter; /* mulai counter dari 0 */
-}
-
-#taskList li {
-  counter-increment: task-counter; /* tiap li nambah angka */
-  padding: 12px 14px 12px 40px; /* kasih ruang buat nomor */
-  margin-bottom: 10px;
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  background: #fafafa;
-  font-size: 14px;
-  position: relative;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-#taskList li::before {
-  content: counter(task-counter) ".";
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: 600;
-  color: #3498db;
-}
-
-#taskList li:hover {
-  background: #f0f7ff;
-}
-
-#taskList li.completed {
-  text-decoration: line-through;
-  color: #7f8c8d;
-  background: #ecf0f1;
+  list-style: decimal inside;
+  padding: 0;
+  margin: 0;
 }
 
 #taskList li {
   display: flex;
-  justify-content: space-between; /* teks kiri, harga kanan */
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
   border-radius: 8px;
-  background: #fff;
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
+#taskList li:hover {
+  transform: translateX(5px);
+  background: #f0f8ff;
+}
+
+/* Task Text */
+#taskList li span:first-child {
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+/* Harga */
 #taskList li .price {
   color: #27ae60;
   font-weight: bold;
+  font-size: 15px;
+  min-width: 80px;
+  text-align: right;
 }
 
+/* Completed State */
 #taskList li.completed span:first-child {
   text-decoration: line-through;
   color: #7f8c8d;
 }
-
