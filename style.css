@@ -114,3 +114,25 @@ h1 {
   color: #7f8c8d;
   background: #ecf0f1;
 }
+
+#taskList li {
+  display: flex;
+  justify-content: space-between; /* teks kiri, harga kanan */
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+#taskList li .price {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+#taskList li.completed span:first-child {
+  text-decoration: line-through;
+  color: #7f8c8d;
+}
+
