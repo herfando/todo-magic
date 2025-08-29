@@ -1,73 +1,119 @@
-/* Reset dasar */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f9fafb;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
   padding: 40px;
 }
 
+/* Container */
 .container {
-  width: 100%;
-  max-width: 500px;
   background: #fff;
-  padding: 20px 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  border-radius: 16px;
+  width: 420px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease;
 }
 
 h1 {
-  margin-bottom: 15px;
+  text-align: center;
+  margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #6c5ce7;
 }
 
-input {
+/* Input */
+input[type="text"] {
   width: 100%;
   padding: 12px 14px;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid #dfe6e9;
   outline: none;
-  transition: border 0.2s;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: 0.3s;
 }
 
-input:focus {
-  border-color: #4a90e2;
+input[type="text"]:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 6px rgba(108,92,231,0.4);
 }
 
-ul {
+/* List dasar */
+#taskList {
   list-style: none;
-  margin-top: 20px;
-  padding-left: 0;     /* pastikan tidak ada indentasi tambahan */
+  counter-reset: task-counter;
 }
 
-li {
-  background: #f1f5f9;
-  margin-bottom: 10px;
+/* Item */
+#taskList li {
+  counter-increment: task-counter;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
   padding: 12px 14px;
-  border-radius: 8px;
-  font-size: 16px;
-
-  /* Biar item selalu ke kiri */
-  text-align: left;
-  display: block;     /* jangan pakai flex supaya teks rata kiri */
-  width: 100%;
-
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.25s ease;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-li.removing {
-  opacity: 0;
-  transform: translateX(-50px);
+/* Nomor otomatis */
+#taskList li::before {
+  content: counter(task-counter) ".";
+  font-weight: 600;
+  color: #6c5ce7;
+  margin-right: 10px;
+  position: absolute;
+  left: 10px;
+}
+
+/* Teks kiri */
+#taskList li .task-text {
+  flex: 1;
+  margin-left: 28px; /* kasih jarak supaya nomor tidak nabrak */
+  color: #2d3436;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Harga kanan */
+#taskList li .price {
+  color: #00b894;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Hover efek */
+#taskList li:hover {
+  background: #f1f2f6;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Coretan kalau selesai */
+#taskList li.completed .task-text {
+  text-decoration: line-through;
+  color: #b2bec3;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
