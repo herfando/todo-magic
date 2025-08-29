@@ -1,90 +1,112 @@
-/* ====== Global Styles ====== */
+/* ====== Reset & Global ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #eef2f3, #d9e4ec);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px;
-  margin: 0;
 }
 
 /* ====== Container ====== */
 .container {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
 }
 
 /* ====== Title ====== */
 h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 25px;   /* Jarak ke bawah */
+  color: #222;
+  margin-bottom: 28px;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* ====== Input & Button ====== */
 .input-wrapper {
   display: flex;
-  gap: 10px;             /* Jarak antara input dan tombol */
-  margin-bottom: 20px;   /* Jarak ke daftar */
+  gap: 10px;
+  margin-bottom: 22px;
 }
 
 #taskInput {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border: 2px solid #d1d9de;
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
-  transition: 0.3s;
+  transition: all 0.25s ease;
 }
 
 #taskInput:focus {
-  border-color: #2193b0;
-  box-shadow: 0 0 8px rgba(33, 147, 176, 0.3);
+  border-color: #3498db;
+  box-shadow: 0 0 12px rgba(52, 152, 219, 0.35);
 }
 
 #addBtn {
-  background: #2193b0;
+  background: linear-gradient(135deg, #3498db, #217dbb);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: 10px;
+  padding: 12px 18px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
 }
 
 #addBtn:hover {
-  background: #176d7a;
+  background: linear-gradient(135deg, #2980b9, #1f6694);
   transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+#addBtn:active {
+  transform: scale(0.97);
 }
 
 /* ====== Task List ====== */
 #taskList {
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 0;
   list-style: none;
 }
 
 #taskList li {
-  background: #f8f8f8;
-  padding: 12px 14px;
-  margin-bottom: 12px;   /* Jarak antar task */
-  border-radius: 8px;
-  transition: 0.3s;
+  background: #f9fbfc;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
   font-size: 15px;
   cursor: pointer;
+  position: relative;
+  border: 1px solid #e3e9ed;
 }
 
 #taskList li:hover {
-  background: #e4f5f9;
-  transform: scale(1.02);
+  background: #eef6fb;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
