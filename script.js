@@ -3,15 +3,15 @@ const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
 
 // Fungsi menambahkan tugas
-function addTask() {
-  const taskText = input.value.trim();
-  if (taskText === "") return;
+function addTask(taskText = null) {
+  const text = taskText !== null ? taskText : input.value.trim();
+  if (text === "") return;
 
   const li = document.createElement("li");
 
-  // Nomor tugas otomatis
+  // Nomor otomatis
   const taskNumber = taskList.children.length + 1;
-  li.innerHTML = `<span>${taskNumber}. ${taskText}</span>`;
+  li.innerHTML = `<span>${taskNumber}. ${text}</span>`;
 
   // Tombol hapus
   const deleteBtn = document.createElement("button");
@@ -19,14 +19,14 @@ function addTask() {
   deleteBtn.classList.add("delete-btn");
 
   deleteBtn.addEventListener("click", function(e) {
-    e.stopPropagation(); // supaya li tidak ikut toggle done
+    e.stopPropagation();
     li.remove();
     updateNumbers();
   });
 
   li.appendChild(deleteBtn);
 
-  // Klik li: tandai selesai
+  // Klik li → tandai selesai
   li.addEventListener("click", function() {
     li.classList.toggle("done");
   });
@@ -42,8 +42,23 @@ function updateNumbers() {
   });
 }
 
-// Event listener
+// Event listener tombol tambah
 addBtn.addEventListener("click", addTask);
-input.addEventListener("keypress", function(e) {
-  if (e.key === "Enter") addTask();
+
+// Event listener keyboard
+input.addEventListener("keydown", function(e) {
+  // Enter → tambah tugas
+  if (e.key === "Enter") {
+    e.preventDefault(); // supaya tidak submit form
+    addTask();
+  }
+
+  // Backspace atau Delete di input kosong → hapus tugas terakhir
+  if ((e.key === "Backspace" || e.key === "Delete") && input.value === "") {
+    const lastTask = taskList.lastElementChild;
+    if (lastTask) {
+      lastTask.remove();
+      updateNumbers();
+    }
+  }
 });
