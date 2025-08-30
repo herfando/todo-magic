@@ -1,98 +1,103 @@
-/* Reset dasar */
-* {
-  margin: 1;
-  padding: 0;
-  box-sizing: border-box;
-  color: aqua;
-
-}
-
+/* Body dan container */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f9fafb;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px;
-}
-
-.container {
-  width: 100%;
-  max-width: 500px;
-  background: #fff;
-  padding: 20px 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-h1 {
-  margin-bottom: 15px;
-  font-size: 24px;
-  color: #333;
-}
-
-input {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
-}
-
-/* List Style */
-ul {
-  list-style: none;         /* hilangkan angka default */
-  margin-top: 20px;
-  padding-left: 0;
-  counter-reset: todo-counter; /* custom nomor */
-}
-
-li {
-  position: relative;
-  margin-bottom: 10px;
-  padding: 12px 14px 12px 48px; /* ruang kiri buat badge angka */
-  border-radius: 8px;
-  font-size: 16px;
-  background: #f1f5f9;
-  text-align: left;
-  line-height: 1.5;
-
-  /* animasi */
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.25s ease;
-}
-
-/* Angka custom (badge bulat) */
-li::before {
-  counter-increment: todo-counter;
-  content: counter(todo-counter);
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #4a90e2;
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(120deg, #84fab0, #8fd3f4);
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-/* Animasi saat dihapus */
-li.removing {
-  opacity: 0;
-  transform: translateX(-50px);
+.container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  width: 350px;
+  text-align: center;
+}
+
+/* Judul */
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input dan tombol */
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 8px 0 0 8px;
+  border: 2px solid #8fd3f4;
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #84fab0;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #84fab0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #8fd3f4;
+}
+
+/* Daftar tugas */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f1f1f1;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+li:hover {
+  background: #e0e0e0;
+}
+
+li.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Tombol hapus */
+.delete-btn {
+  background: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background: #ff4c4c;
 }
