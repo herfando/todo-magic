@@ -1,56 +1,64 @@
 const input = document.getElementById("taskInput");
-const list = document.getElementById("taskList");
 const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
 
-function addTask() {
-  const taskText = input.value.trim();
-  if (taskText === "") return;
-
-  // Pisahkan nama & harga pakai tanda "-"
-  let [name, price] = taskText.split("-");
-  name = name ? name.trim() : "";
-  price = price ? price.trim() : "";
+// Fungsi menambahkan tugas
+function addTask(taskText = null) {
+  const text = taskText !== null ? taskText : input.value.trim();
+  if (text === "") return;
 
   const li = document.createElement("li");
 
-  // Tambahkan teks tugas
-  const taskSpan = document.createElement("span");
-  taskSpan.textContent = name;
+  // Nomor otomatis
+  const taskNumber = taskList.children.length + 1;
+  li.innerHTML = `<span>${taskNumber}. ${text}</span>`;
 
-  // Tambahkan harga (jika ada)
-  if (price) {
-    const priceSpan = document.createElement("span");
-    priceSpan.textContent = "Rp" + Number(price).toLocaleString("id-ID");
-    priceSpan.classList.add("price");
-    li.appendChild(taskSpan);
-    li.appendChild(priceSpan);
-  } else {
-    li.appendChild(taskSpan);
-  }
+  // Tombol hapus
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Hapus";
+  deleteBtn.classList.add("delete-btn");
 
-  // Klik task -> toggle selesai
-  li.addEventListener("click", () => {
-    li.classList.toggle("completed");
+  deleteBtn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    li.remove();
+    updateNumbers();
   });
 
-  list.appendChild(li);
+  li.appendChild(deleteBtn);
+
+  // Klik li → tandai selesai
+  li.addEventListener("click", function() {
+    li.classList.toggle("done");
+  });
+
+  taskList.appendChild(li);
   input.value = "";
 }
 
-// Tombol Add
+// Update nomor setelah hapus
+function updateNumbers() {
+  Array.from(taskList.children).forEach((li, index) => {
+    li.querySelector("span").textContent = `${index + 1}. ${li.querySelector("span").textContent.split(". ")[1]}`;
+  });
+}
+
+// Event listener tombol tambah
 addBtn.addEventListener("click", addTask);
 
-// Event keyboard di input
-input.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+// Event listener keyboard
+input.addEventListener("keydown", function(e) {
+  // Enter → tambah tugas
+  if (e.key === "Enter") {
+    e.preventDefault(); // supaya tidak submit form
     addTask();
-  } else if (
-    (event.key === "Backspace" || event.key === "Delete") &&
-    input.value === ""
-  ) {
-    const lastTask = list.lastElementChild;
+  }
+
+  // Backspace atau Delete di input kosong → hapus tugas terakhir
+  if ((e.key === "Backspace" || e.key === "Delete") && input.value === "") {
+    const lastTask = taskList.lastElementChild;
     if (lastTask) {
       lastTask.remove();
+      updateNumbers();
     }
   }
 });
